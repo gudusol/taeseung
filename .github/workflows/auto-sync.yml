@@ -26,7 +26,7 @@ jobs:
 
       - name: Add remote-url
         run: |
-          git remote add forked-repo https
+          git remote add forked-repo https://github.com/gudusol/taeseung.git
           git config user.name gudusol
           git config user.email remicon99@gmail.com
 

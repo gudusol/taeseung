@@ -33,8 +33,8 @@ jobs:
 
       - name: Push changes to forked-repo
         run: |
-          git push -f forked-repo main
+          git push -f forked_repo main
 
       - name: Clean up
         run: |
-          git remote remove forked-repo
+          git remote remove forked_repo

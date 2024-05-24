@@ -12,10 +12,6 @@ jobs:
     steps:
       - name: Checkout main
         uses: actions/checkout@v4
-
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-
         with:
           token: ${{ secrets.FORKED_REPO_TOKEN }}
 
@@ -33,8 +29,8 @@ jobs:
 
       - name: Push changes to forked-repo
         run: |
-          git push -f forked_repo main
+          git push -f forked-repo main
 
       - name: Clean up
         run: |
-          git remote remove forked_repo
+          git remote remove forked-repo

@@ -12,18 +12,10 @@ jobs:
     steps:
       - name: Checkout main
         uses: actions/checkout@v4
-
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-
         with:
-          node-version: 20.13.1
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Build project
-        run: yarn run build
+          token: ${{ secrets.FORKED_REPO_TOKEN }}
+          fetch-depth: 0
+          ref: main
 
       - name: Add remote-url
         run: |

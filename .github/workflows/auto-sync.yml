@@ -1,39 +1,39 @@
 name: Synchronize to forked repo
-	on:
-	  push:
-	    branches:
-	      - main
+on:
+  push:
+    branches:
+      - main
 
-	jobs:
-	  sync:
-	    name: Sync forked repo
-	    runs-on: ubuntu-latest
+jobs:
+  sync:
+    name: Sync forked repo
+    runs-on: ubuntu-latest
 
-	    steps:
-	      - name: Checkout main // 레포지토리 코드 체크아웃 (코드 가져오기)
-	        uses: actions/checkout@v4 // actions 가져오기
-        
-	      - name: Use Node.js // 해당 환경을 Node.js에서 실행하겠다고 명시
-	        uses: actions/setup-node@v4 // actions 가져오기
-	        with:
-	          node-version: 20.13.1 // 자신의 node 버전 확인하여 기입
+    steps:
+      - name: Checkout main // 레포지토리 코드 체크아웃 (코드 가져오기)
+        uses: actions/checkout@v4 // actions 가져오기
 
-	      - name: Install dependencies // 의존성 설치
-	        run: yarn install
+      - name: Use Node.js // 해당 환경을 Node.js에서 실행하겠다고 명시
+        uses: actions/setup-node@v4 // actions 가져오기
+        with:
+          node-version: 20.13.1 // 자신의 node 버전 확인하여 기입
 
-	      - name: Build project // 빌드
-	        run: yarn run build
+      - name: Install dependencies // 의존성 설치
+        run: yarn install
 
-	      - name: Add remote-url // 자신의 포크 레포 주소 remote 연결
-	        run: |
-	          git remote add forked-repo https://gudusol:${{ secrets.FORKED_REPO_TOKEN }}@github.com/gudusol/[개인 레포지토리명]
-	          git config user.name gudusol
-	          git config user.email remicon99@gmail.com
-      
-	      - name: Push changes to forked-repo // 포크 레포에 push
-	        run: |
-	          git push -f forked-repo main
-      
-	      - name: Clean up // 푸시 후 remote-url 에서 삭제
-	        run: |
-	          git remote remove forked-repo
+      - name: Build project // 빌드
+        run: yarn run build
+
+      - name: Add remote-url // 자신의 포크 레포 주소 remote 연결
+        run: |
+          git remote add forked-repo https://gudusol:${{ secrets.FORKED_REPO_TOKEN }}@github.com/gudusol/[개인 레포지토리명]
+          git config user.name gudusol
+          git config user.email remicon99@gmail.com
+
+      - name: Push changes to forked-repo // 포크 레포에 push
+        run: |
+          git push -f forked-repo main
+
+      - name: Clean up // 푸시 후 remote-url 에서 삭제
+        run: |
+          git remote remove forked-repo

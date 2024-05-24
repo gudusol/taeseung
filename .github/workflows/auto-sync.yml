@@ -18,7 +18,9 @@ jobs:
 
         with:
           node-version: 20.13.1
+        with:
           token: ${{ secrets.FORKED_REPO_TOKEN }}
+
 
       - name: Install dependencies
         run: yarn install
